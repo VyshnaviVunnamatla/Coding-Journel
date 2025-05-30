@@ -6,7 +6,7 @@ function ProblemList() {
 
   useEffect(() => {
     const fetchProblems = async () => {
-      const res = await axios.get("http://localhost:5000/api/problems");
+      const res = await axios.get("https://coding-journel-backend.onrender.com/api/problems");
       setProblems(res.data);
     };
     fetchProblems();

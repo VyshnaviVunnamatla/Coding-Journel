@@ -5,12 +5,17 @@ function ProblemList() {
   const [problems, setProblems] = useState([]);
 
   useEffect(() => {
-    const fetchProblems = async () => {
+  const fetchProblems = async () => {
+    try {
       const res = await axios.get("https://coding-journel-backend.onrender.com/api/problems");
       setProblems(res.data);
-    };
-    fetchProblems();
-  }, []);
+    } catch (error) {
+      console.error("Error fetching problems:", error);
+    }
+  };
+
+  fetchProblems();
+}, []);
 
   return (
     <div className="problem-list">

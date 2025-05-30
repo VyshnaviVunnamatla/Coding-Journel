@@ -6,7 +6,7 @@ function ProblemForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:5000/api/problems", form);
+    await axios.post("https://coding-journel-backend.onrender.com/api/problems", form);
     setForm({ title: "", platform: "", topic: "", code: "", notes: "" });
   };
 

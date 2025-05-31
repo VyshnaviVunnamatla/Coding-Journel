@@ -1,59 +1,31 @@
 import React, { useState } from 'react';
 import { Container } from 'react-bootstrap';
-import Header from './Header';
-import ProblemForm from './ProblemForm';
-import ProblemList from './ProblemList';
-import './App.css';
+import NavbarComponent from './components/Navbar';
+import ProblemForm from './components/ProblemForm';
+import ProblemList from './components/ProblemList';
 
-const App = () => {
+function App() {
   const [problems, setProblems] = useState([]);
-  const [editingProblem, setEditingProblem] = useState(null);
 
-  const handleAddProblem = (problem) => {
-    if (editingProblem) {
-      setProblems((prev) =>
-        prev.map((p) => (p._id === editingProblem._id ? { ...problem, _id: editingProblem._id } : p))
-      );
-      setEditingProblem(null);
-    } else {
-      setProblems((prev) => [...prev, { ...problem, _id: Date.now().toString() }]);
-    }
+  const addProblem = (problem) => {
+    setProblems([...problems, { ...problem, id: Date.now() }]);
   };
 
-  const handleEditClick = (problem) => {
-    setEditingProblem(problem);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleDelete = (id) => {
-    setProblems((prev) => prev.filter((p) => p._id !== id));
-  };
-
-  const handleLogout = () => {
-    alert('Logged out!');
-    // Add your logout logic here
+  const deleteProblem = (id) => {
+    setProblems(problems.filter((p) => p.id !== id));
   };
 
   return (
     <>
-      <Header onLogout={handleLogout} />
-      <Container className="mb-5">
-        <ProblemForm onSubmit={handleAddProblem} initialData={editingProblem} />
+      <NavbarComponent />
+      <Container className="my-4">
+        <ProblemForm onAddProblem={addProblem} />
         <hr />
-        <h2 className="my-4">My Problems</h2>
-        <ProblemList
-          problems={problems}
-          handleEditClick={handleEditClick}
-          handleDelete={handleDelete}
-        />
+        <ProblemList problems={problems} onDeleteProblem={deleteProblem} />
       </Container>
-      <footer className="text-center py-3 bg-light mt-auto">
-        <Container>
-          <small>© 2025 Your Name | <a href="mailto:youremail@example.com">Contact Me</a></small>
-        </Container>
-      </footer>
     </>
   );
-};
+}
 
 export default App;
+

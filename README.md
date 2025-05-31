@@ -1,16 +1,54 @@
-# Coding Journal App
+# 📘 Coding Journal
 
-A full-stack MERN app to track coding problems you've solved.
+A full-stack web application built with **React**, **Node.js**, **Express**, and **MongoDB** that allows users to record, manage, and review their coding problems and solutions. Designed with Bootstrap for a clean, responsive user interface.
 
-## Tech Stack
-- React (Frontend)
-- Express + Node.js (Backend)
-- MongoDB Atlas (Database)
+---
 
-## Run Locally
-- Setup `.env` with `MONGO_URI`
-- Run backend: `npm start`
-- Run frontend: `npm start`
+## 🚀 Features
 
-## Deployment
-Coming soon!
+- 📝 Add, edit, and delete coding problems
+- 💬 Store problem title, description, and solution
+- 🔍 Search and sort problems for quick access
+- ✅ Form validation for inputs
+- 🎨 Clean and modern UI using React-Bootstrap
+- 📱 Fully responsive for mobile and desktop
+- 🌐 Frontend deployed on **Vercel**
+- 🔧 Backend deployed on **Render**
+
+---
+
+## 🖼️ Demo
+
+🔗 **Live Site**: [Click here to view the app](https:/coding-journal-app/.vercel.app)
+
+📂 **Backend Repo**: [Coding Journal Backend](https://github.com/https:/VyshnaviVunnamatla/coding-journal-backend)
+
+---
+
+## 📦 Tech Stack
+
+**Frontend**:
+- React
+- Bootstrap / React-Bootstrap
+- Axios
+- React Router
+
+**Backend**:
+- Node.js
+- Express.js
+- MongoDB Atlas
+- Mongoose
+
+**Deployment**:
+- Vercel (Frontend)
+- Render (Backend)
+
+---
+
+## 🛠️ Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/VyshnaviVunnamatla/Coding-Journel.git
+cd Coding-Journel

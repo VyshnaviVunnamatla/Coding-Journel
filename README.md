@@ -2,7 +2,9 @@
 
 A full-stack web application built with **React**, **Node.js**, **Express**, and **MongoDB** that allows users to record, manage, and review their coding problems and solutions. Designed with Bootstrap for a clean, responsive user interface.
 
+
 ---
+
 
 ## 🚀 Features
 
@@ -15,7 +17,9 @@ A full-stack web application built with **React**, **Node.js**, **Express**, and
 - 🌐 Frontend deployed on **Vercel**
 - 🔧 Backend deployed on **Render**
 
+
 ---
+
 
 ## 🖼️ Demo
 
@@ -23,7 +27,9 @@ A full-stack web application built with **React**, **Node.js**, **Express**, and
 
 📂 **Backend Repo**: [Coding Journal Backend](https://github.com/VyshnaviVunnamatla/Coding-Journel/tree/main/backend)
 
+
 ---
+
 
 ## 📦 Tech Stack
 
@@ -43,7 +49,9 @@ A full-stack web application built with **React**, **Node.js**, **Express**, and
 - Vercel (Frontend)
 - Render (Backend)
 
+
 ---
+
 
 ## 🛠️ Setup Instructions
 
@@ -74,7 +82,9 @@ PORT=5000
 npm start
 ```
 
+
 ---
+
 
 ## 📁 Project Structure
 
@@ -83,13 +93,18 @@ npm start
 /server      --> Node.js + Express backend
 ```
 
+
 ---
+
 
 ## 🙋‍♀️ Author
 Vyshnavi Vunnamatla
+
 🌐 [GitHub](https://github.com/VyshnaviVunnamatla)
 
+
 ---
+
 
 ## 📜 License
 This project is licensed under the MIT License.

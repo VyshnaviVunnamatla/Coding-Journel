@@ -16,10 +16,14 @@ function ProblemList() {
   const [problems, setProblems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [deleteError, setDeleteError] = useState("");
   const [showEditModal, setShowEditModal] = useState(false);
   const [currentProblem, setCurrentProblem] = useState(null);
   const [saving, setSaving] = useState(false);
-  const [deleteError, setDeleteError] = useState("");
+
+  // Step 2 states
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("title");
 
   useEffect(() => {
     fetchProblems();
@@ -48,7 +52,6 @@ function ProblemList() {
       await axios.delete(
         `https://coding-journel-backend.onrender.com/api/problems/${id}`
       );
-      // Remove from local state for instant UI update
       setProblems(problems.filter((p) => p._id !== id));
     } catch (err) {
       console.error("Delete error:", err);
@@ -70,7 +73,6 @@ function ProblemList() {
     if (!currentProblem) return;
     setSaving(true);
 
-    // Basic validation example:
     if (!currentProblem.title.trim()) {
       alert("Title is required.");
       setSaving(false);
@@ -82,7 +84,6 @@ function ProblemList() {
         `https://coding-journel-backend.onrender.com/api/problems/${currentProblem._id}`,
         currentProblem
       );
-      // Update problem in local state
       setProblems(
         problems.map((p) => (p._id === currentProblem._id ? res.data : p))
       );
@@ -96,11 +97,25 @@ function ProblemList() {
     }
   };
 
-  // Form change handler for editing problem fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCurrentProblem({ ...currentProblem, [name]: value });
   };
+
+  // Filter & sort logic for Step 2
+  const filteredProblems = problems
+    .filter((p) =>
+      [p.title, p.topic, p.platform]
+        .join(" ")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (sortBy === "title") return a.title.localeCompare(b.title);
+      if (sortBy === "platform") return a.platform.localeCompare(b.platform);
+      if (sortBy === "topic") return a.topic.localeCompare(b.topic);
+      return 0;
+    });
 
   if (loading) {
     return (
@@ -124,11 +139,33 @@ function ProblemList() {
 
       {deleteError && <Alert variant="danger">{deleteError}</Alert>}
 
-      {problems.length === 0 ? (
-        <Alert variant="info">No problems added yet. Start by adding one!</Alert>
+      {/* Search and Sort Controls */}
+      <Row className="mb-3 align-items-center">
+        <Col md={6} className="mb-2 mb-md-0">
+          <Form.Control
+            type="search"
+            placeholder="Search by title, topic or platform"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </Col>
+        <Col md={3}>
+          <Form.Select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+          >
+            <option value="title">Sort by Title</option>
+            <option value="platform">Sort by Platform</option>
+            <option value="topic">Sort by Topic</option>
+          </Form.Select>
+        </Col>
+      </Row>
+
+      {filteredProblems.length === 0 ? (
+        <Alert variant="info">No problems found matching your criteria.</Alert>
       ) : (
         <Row xs={1} md={2} lg={3} className="g-4">
-          {problems.map((p) => (
+          {filteredProblems.map((p) => (
             <Col key={p._id}>
               <Card>
                 <Card.Body>
@@ -187,6 +224,7 @@ function ProblemList() {
                   name="title"
                   value={currentProblem.title}
                   onChange={handleChange}
+                  required
                 />
               </Form.Group>
 
@@ -248,3 +286,4 @@ function ProblemList() {
 }
 
 export default ProblemList;
+

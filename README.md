@@ -21,7 +21,7 @@ A full-stack web application built with **React**, **Node.js**, **Express**, and
 
 🔗 **Live Site**: [Click here to view the app](https:/coding-journal-app/.vercel.app)
 
-📂 **Backend Repo**: [Coding Journal Backend](https://github.com/https:/VyshnaviVunnamatla/coding-journal-backend)
+📂 **Backend Repo**: [Coding Journal Backend](https://github.com/VyshnaviVunnamatla/Coding-Journel/tree/main/backend)
 
 ---
 

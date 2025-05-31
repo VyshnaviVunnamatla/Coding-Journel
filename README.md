@@ -74,6 +74,7 @@ PORT=5000
 npm start
 ```
 
+---
 
 ## 📁 Project Structure
 
@@ -82,11 +83,13 @@ npm start
 /server      --> Node.js + Express backend
 ```
 
+---
 
 ## 🙋‍♀️ Author
 Vyshnavi Vunnamatla
 🌐 [GitHub](https://github.com/VyshnaviVunnamatla)
 
+---
 
 ## 📜 License
 This project is licensed under the MIT License.

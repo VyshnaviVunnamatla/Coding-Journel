@@ -52,3 +52,41 @@ A full-stack web application built with **React**, **Node.js**, **Express**, and
 ```bash
 git clone https://github.com/VyshnaviVunnamatla/Coding-Journel.git
 cd Coding-Journel
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Create .env File for Backend
+In the backend directory, add the following:
+
+```ini
+MONGO_URI=your-mongodb-connection-string
+PORT=5000
+```
+
+### 4. Run the App Locally
+
+```bash
+npm start
+```
+
+
+## 📁 Project Structure
+
+```pgsql
+/client      --> React frontend
+/server      --> Node.js + Express backend
+```
+
+
+## 🙋‍♀️ Author
+Vyshnavi Vunnamatla
+🌐 [GitHub](https://github.com/VyshnaviVunnamatla)
+
+
+## 📜 License
+This project is licensed under the MIT License.

@@ -7,25 +7,19 @@ function Header({ onLogout }) {
     <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
       <Container>
         <LinkContainer to="/">
-          <Navbar.Brand>Coding Journal</Navbar.Brand>
+          <Navbar.Brand><h1>Coding Journal</h1></Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <LinkContainer to="/">
-              <Nav.Link>Home</Nav.Link>
+              <Nav.Link><span className="space-right"><h3>Home</h3></span></Nav.Link>
             </LinkContainer>
             <LinkContainer to="/add-problem">
-              <Nav.Link>Add Problem</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/profile">
-              <Nav.Link>Profile</Nav.Link>
+              <Nav.Link><h3>Add Problem</h3></Nav.Link>
             </LinkContainer>
           </Nav>
           <Nav>
-            <Button variant="outline-light" onClick={onLogout}>
-              Logout
-            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>

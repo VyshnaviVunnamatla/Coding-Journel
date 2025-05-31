@@ -8,34 +8,61 @@ function ProblemForm() {
     platform: "",
     topic: "",
     code: "",
-    notes: ""
+    notes: "",
   });
 
+  const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const validate = () => {
+    const newErrors = {};
+    if (!form.title.trim()) newErrors.title = "Title is required";
+    if (!form.platform.trim()) newErrors.platform = "Platform is required";
+    if (!form.topic.trim()) newErrors.topic = "Topic is required";
+    return newErrors;
+  };
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: "" }); // clear error on change
+    if (message) setMessage(""); // clear message on any input change
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setSubmitting(true);
     try {
-      await axios.post("https://coding-journel-backend.onrender.com/api/problems", form);
+      await axios.post(
+        "https://coding-journel-backend.onrender.com/api/problems",
+        form
+      );
       setForm({ title: "", platform: "", topic: "", code: "", notes: "" });
       setMessage("✅ Problem added successfully!");
-      setTimeout(() => setMessage(""), 3000);
+      setErrors({});
     } catch (err) {
       console.error(err);
       setMessage("❌ Failed to add problem.");
-      setTimeout(() => setMessage(""), 3000);
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
     <Container className="my-4">
       <h2 className="text-center mb-4">Add a Coding Problem</h2>
-      {message && <Alert variant={message.includes("✅") ? "success" : "danger"}>{message}</Alert>}
-      <Form onSubmit={handleSubmit}>
+      {message && (
+        <Alert variant={message.includes("✅") ? "success" : "danger"}>
+          {message}
+        </Alert>
+      )}
+      <Form onSubmit={handleSubmit} noValidate>
         <Row>
           <Col md={6}>
             <Form.Group controlId="title" className="mb-3">
@@ -46,8 +73,11 @@ function ProblemForm() {
                 name="title"
                 value={form.title}
                 onChange={handleChange}
-                required
+                isInvalid={!!errors.title}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors.title}
+              </Form.Control.Feedback>
             </Form.Group>
           </Col>
           <Col md={6}>
@@ -59,8 +89,11 @@ function ProblemForm() {
                 name="platform"
                 value={form.platform}
                 onChange={handleChange}
-                required
+                isInvalid={!!errors.platform}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors.platform}
+              </Form.Control.Feedback>
             </Form.Group>
           </Col>
         </Row>
@@ -73,8 +106,11 @@ function ProblemForm() {
             name="topic"
             value={form.topic}
             onChange={handleChange}
-            required
+            isInvalid={!!errors.topic}
           />
+          <Form.Control.Feedback type="invalid">
+            {errors.topic}
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="code" className="mb-3">
@@ -101,8 +137,13 @@ function ProblemForm() {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit" className="w-100">
-          Add Problem
+        <Button
+          variant="primary"
+          type="submit"
+          className="w-100"
+          disabled={submitting}
+        >
+          {submitting ? "Adding..." : "Add Problem"}
         </Button>
       </Form>
     </Container>

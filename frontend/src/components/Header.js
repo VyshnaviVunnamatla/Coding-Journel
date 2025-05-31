@@ -7,7 +7,7 @@ function Header({ onLogout }) {
     <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
       <Container>
         <LinkContainer to="/">
-          <Navbar.Brand>Coding Journal</Navbar.Brand>
+          <Navbar.Brand><h1>Coding Journal</h1></Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -16,10 +16,7 @@ function Header({ onLogout }) {
               <Nav.Link>Home</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/add-problem">
-              <Nav.Link>Add Problem</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/profile">
-              <Nav.Link>Profile</Nav.Link>
+              <Nav.Link>                  Add Problem</Nav.Link>
             </LinkContainer>
           </Nav>
           <Nav>
